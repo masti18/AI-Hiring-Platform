@@ -6,6 +6,8 @@ Schema rules (enforced from Milestone 1 onward):
 - Gate decisions are always persisted to the audit table.
 """
 
+from app.models.audit_log import AuditLog
 from app.models.company import Company
+from app.models.role_requirement import RoleRequirement
 
-__all__ = ["Company"]
+__all__ = ["AuditLog", "Company", "RoleRequirement"]
