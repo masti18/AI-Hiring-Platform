@@ -38,11 +38,18 @@ async def make_company() -> AsyncIterator[Callable]:
     """Factory that creates Company rows and cleans them up (cascades to children)."""
     created: list[uuid.UUID] = []
 
-    async def _make(name: str = "Acme") -> Company:
+    async def _make(
+        name: str = "Acme",
+        *,
+        auto_approve_gate1: bool = True,
+        auto_approve_gate2: bool = True,
+    ) -> Company:
         company = Company(
             id=uuid.uuid4(),
             name=name,
             slug=f"{name.lower()}-{uuid.uuid4().hex[:8]}",
+            auto_approve_gate1=auto_approve_gate1,
+            auto_approve_gate2=auto_approve_gate2,
             created_at=datetime.now(UTC),
             updated_at=datetime.now(UTC),
         )
