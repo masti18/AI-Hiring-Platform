@@ -1,0 +1,42 @@
+# Web framework
+fastapi==0.115.8
+uvicorn[standard]==0.34.0
+python-multipart==0.0.20
+
+# Settings & validation
+pydantic==2.10.6
+pydantic-settings==2.7.1
+email-validator==2.2.0
+
+# Database
+SQLAlchemy[asyncio]==2.0.38
+asyncpg==0.30.0
+alembic==1.14.1
+psycopg2-binary==2.9.10
+
+# Cache / queues
+redis==5.2.1
+
+# Vector store client
+qdrant-client==1.13.2
+
+# Auth
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+bcrypt==4.2.1
+
+# Orchestration / LLM
+langgraph==0.2.74
+langchain-core==0.3.37
+langchain-openai==0.3.6
+openai==1.63.2
+
+# HTTP / utils
+httpx==0.28.1
+tenacity==9.0.0
+structlog==25.1.0
+
+# Dev / test
+pytest==8.3.4
+pytest-asyncio==0.25.3
+ruff==0.9.6
