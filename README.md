@@ -99,12 +99,26 @@ docker compose --profile full up --build
 3. External integrations behind adapters (mockable / swappable).
 4. Flag any request that would break modularity, skip the audit trail, or hardcode company-specific rules into pipeline code.
 
-## Milestone 0 status
+## Milestone status
 
-- [x] Monorepo skeleton
-- [x] FastAPI app + health endpoints
-- [x] LangGraph graph skeleton with config-driven gates
-- [x] LLM / email / voice adapter interfaces
-- [x] Alembic + initial `companies` migration (auto-gate flags)
-- [x] Next.js 14 + Tailwind + shadcn/ui button primitive
-- [x] Docker Compose: postgres, redis, qdrant
+- [x] Milestone 0 — monorepo skeleton, Compose infra, LangGraph auto-gate scaffold
+- [x] Milestone 1 — JWT auth, company tenancy, hiring-brief intake (stated vs hidden), structured JD generation, audit events, pipeline run kickoff
+- [ ] Milestone 2 — sourcing + scoring with hidden-rule enforcement
+- [ ] Milestone 3 — outreach adapters
+- [ ] Milestone 4 — AI voice interviews
+- [ ] Milestone 5 — offers + gate UX
+- [ ] Milestone 6 — optional Neo4j graph (only if needed)
+
+### Milestone 1 API surface
+
+| Method | Path | Purpose |
+| --- | --- | --- |
+| POST | `/auth/register` | Create company + admin user, return JWT |
+| POST | `/auth/login` | Login |
+| GET | `/auth/me` | Current user |
+| GET/PATCH | `/companies/me` | Read/update auto-gate flags |
+| POST/GET | `/roles` | Create/list roles with stated + hidden filters |
+| POST | `/roles/{id}/generate-jd` | Structured JD JSON (hidden filters excluded) |
+| POST | `/roles/{id}/runs` | Start LangGraph pipeline run + audit gates |
+
+Frontend: `/` (register/login), `/console` (intake + JD preview + gate toggles).
